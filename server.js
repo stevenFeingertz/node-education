@@ -7,6 +7,20 @@
 	Step 4: Use 'git add <<file or folder>>' to add.
 	Step 5: Create a .gitignore file in root of project. Add all files or folders we want to ignore and not have tracked by git
 	Step 6: Add .gitignore to list of tracked files by git (see step 4)
+
+
+	TO DEPLOY TO GITHUB/HEROKU
+	Run 'git status'
+	If there are any files/folders not in the commit, add them with git add
+	Run 'git commit -m 'message describing the commit'
+	Run git push
+
+	--to continue to heroku
+	Run heroku create
+	Run git push heroku
+	run heroku open (to open browser to see app)
+
+
 */
 
 /*
@@ -31,10 +45,10 @@ const port = process.env.PORT || 3000;
 // SETUP EXPRESS AS SERVER
 var app = express();
 
-
-
 // EXPRESS PARTIALS - register the use of partials with express. a partial is a chunk of code that we use everywhere (head, footer, css, etc.)
 hbs.registerPartials(__dirname + '/views/partials');
+
+
 
 
 
@@ -90,6 +104,13 @@ app.get('/about', (request, response) => {
 		pageTitle: 'About Page'
 	});
 });
+
+app.get('/projects', (request, response) => {
+	response.render('projects.hbs', {
+		pageTitle: 'Projects Page'
+	});
+});
+
 
 app.get('/bad',(request, response) => {
 	response.send({
